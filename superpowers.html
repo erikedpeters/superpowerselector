@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>Super Powahs</title>
+
+<style type="text/css">
+	h4 {font-family: sans-serif;}
+	p {font-family: sans-serif;}
+	a {font-family: sans-serif; color:#d15423; text-decoration:none;}
+</style>
+
+</head>
+
+<body>
+
+<canvas id="Canvas" width="750" height="500" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+<script  type="text/javascript">
+
+var pList = [{"power":"Human Torch","description": "You have the power to wield and manipulate fire at temperatures equivalent to the surface of the sun","caveats": ["you're incapable of grilling to 'medium rare'.","you sure picked the wrong month to quit smoking.","you live in an asbestos house.","you don't tan, you burn."],"nemesis": "cats","image": "http://meltmedia.com/images/superme/superme-fire.jpg"},{"power": "X-ray Vision","description": "You have the awesome power to see through any material","caveats": ["it only works at Walmart.","you have a lazy eye."],"nemesis": "cats","image": "http://meltmedia.com/images/superme/superme-xray.jpg"},{"power": "Flight","description": "You have the ability to soar like an eagle anywhere in the world","caveats": ["you have trouble sticking the landing.","you feel compelled to migrate with the seasons.","bags are still $50 bucks."],"nemesis": "cats","image": "http://meltmedia.com/images/superme/superme-flight.jpg"},{"power": "Laser Vision","description": "You have the super cool ability to shoot focused lasers with your eyes","caveats": ["you're surrounded by cats."],"nemesis": "cats","image": "http://meltmedia.com/images/superme/superme-laser.jpg"},{"power": "Animal Telepath","description": "You have the incredible gift from nature to communicate with animals using just your mind","caveats": ["greeting colleagues with a butt sniff is not universally appreciated.","you feel compelled to drive with your head out the window.","Aquaman keeps inviting you to the support group for useless superheroes."],"nemesis": "cats","image": "http://meltmedia.com/images/superme/superme-fox.jpg"},{"power": "Night Vision","description": "You have the magical gift to see clearly even in complete darkness","caveats": ["but it only works during business hours.","you're on \"Team Edward\"."],"nemesis": "cats","image": "http://meltmedia.com/images/superme/superme-night.jpg"},{"power": "Mind Control","description": "You have the ability to influence what others think and control their will, all with the power of your mind","caveats": ["your ideas generally suck.","you're a Kardashian."],"nemesis": "cats","image": "http://meltmedia.com/images/superme/superme-mind.jpg"},{"power": "Mind Reading","description": "You have the ability to silently read the thoughts of others around you","caveats": ["you're surrounded by idiots.","you work at the DMV."],"nemesis": "cats","image": "http://meltmedia.com/images/superme/superme-mind.jpg"},{"power": "Invisibility","description": "You have the ability to be completely unnoticeable in public","caveats": ["what else is new?"],"nemesis": "cats","image": "http://meltmedia.com/images/superme/superme-invisible.jpg"},{"power": "Super Strength","description": "You are the strongest person in the world with the ability to lift 100x your own weight","caveats": ["you're lactose intolerant and allergic to fabric softener."],"nemesis": "cats","image": "http://meltmedia.com/images/superme/superme-strong.jpg"},{"power": "Regeneration","description": "You have the ability to heal yourself at a superhuman rate and you never get sick","caveats": ["only your tail will grow back.","your friends like to cut off your fingers at parties."],"nemesis": "cats","image": "http://meltmedia.com/images/superme/superme-default.jpg"},{"power": "Mastermind","description": "You have the ability to understand, retain and analyze information like a human supercomputer, making you the smartest person on the planet","caveats": ["oh, goooood for yoooooooou.","nobody likes a know-it-all.","you can't make love out of nothing at all."],"nemesis": "cats","image": "http://meltmedia.com/images/superme/superme-mind.jpg"},{"power": "Bulletproof","description": "Your skin is so amazingly strong and taut that bullets just bounce off you","caveats": ["you just got invited to the knife party.","you look like a plastic surgery nightmare."],"nemesis": "cats","image": "http://meltmedia.com/images/superme/superme-indestructible.jpg"},{"power": "Time Control","description": "You have the ability to stop time and do things while everything else stands still","caveats": ["it only works at the DMV.","you still can't skip the commercials."],"nemesis": "cats","image": "http://meltmedia.com/images/superme/superme-default.jpg"},{"power": "Freeze Ray","description": "You have the power to manipulate the moisture in the air and freeze objects solid","caveats": ["you never get to eat a warm meal.","you're surrounded by penguins."],"nemesis": "cats","image": "http://meltmedia.com/images/superme/superme-ice.jpg"},{"power": "Super Speed","description": "You are the fastest person on earth and capable of speeds over 250mph","caveats": ["you're blind.","this skill is less desirable in the bedroom."],"nemesis": "cats","image": "http://meltmedia.com/images/superme/superme-fast.jpg"},{"power": "Indestructible","description": "You are impervious to any form of damage or destruction known to man","caveats": ["so is your poop.","your mother-in-law is moving in."],"nemesis": "cats","image": "http://meltmedia.com/images/superme/superme-indestructible.jpg"},{"power": "Super Hearing","description": "You can hear the tiniest whisper of a sound, even over great distances","caveats": ["as a librarian you engage in frequent, unnecessary confrontations.","you live next door to Fran Drescher."],"nemesis": "cats","image": "http://meltmedia.com/images/superme/superme-hearing.jpg"},{"power": "Shape Shifting","description": "You can change your shape into any animal","caveats": ["you have fleas.","you instinctively mark your furniture.", "other species see you as a viable mate."],"nemesis": "cats","image": "http://meltmedia.com/images/superme/superme-fox.jpg"},{"power": "Teleportation","description": "You can move through space and time to emerge anywhere else in the world","caveats": ["your clothes don't teleport with you."],"nemesis": "cats","image": "http://meltmedia.com/images/superme/superme-teleport.jpg"},{"power": "Elasticity","description": "You can stretch yourself 100x beyond your normal body dimensions","caveats": ["it takes 24hrs to return to your normal shape.","you work at a pit bull rescue center and smell like bacon."],"nemesis": "cats","image": "http://meltmedia.com/images/superme/superme-stretch.jpg"},{"power": "Telekinesis","description": "You have the ability to manipulate and move objects with your mind","caveats": ["you have A.D.D. and can't remember where you put things."],"nemesis": "cats","image": "http://meltmedia.com/images/superme/superme-mind.jpg"},{"power": "Healing Ability","description": "You have the superhuman ability to heal people with just your touch","caveats": ["\"Feel Better Guy\" isn't a very catchy superhero name.","your friends always want you to 'look at something' on their body.","you have to touch them with your tongue."],"nemesis": "cats","image": "http://meltmedia.com/images/superme/superme-default.jpg"},{"power": "Master of Magnetism","description": "You have the ability to manipulate metal and magnetic fields","caveats": ["you're hopelessly single.","you live in your mom's basement."],"nemesis": "cats","image": "http://meltmedia.com/images/superme/superme-magnet.jpg"},{"power": "Weather Wizard","description": "You have the ability to control the weather","caveats": ["your theme song is \"It's raining men.\"","if it was up to your mom, itâ€™d be raining men."],"nemesis": "cats","image": "http://meltmedia.com/images/superme/superme-flight.jpg"}];
+
+var selectboxes = [];
+var slot = 0;
+var icons = [];
+var selected = [];
+var powerslot = [];
+var redo;
+var space = document.getElementById("Canvas");
+var context = space.getContext("2d");
+var z = false;
+for (var i in pList) {
+  var icon = new Image();
+  icon.src = pList[i].image;
+  icons.push(icon);
+}
+if (!z) {
+  context.font = "28pt Arial";
+  context.fillStyle = 'black';
+  context.fillText("Booting up...", 290, 250);
+  setTimeout("main();", 1000);
+  z = true;
+}
+
+function main() {
+  context.clearRect(0, 0, 750, 500);
+  context.shadowOffsetX = 5;
+  context.shadowOffsetY = 5;
+  context.shadowColor = 'grey';
+  context.shadowBlur = 9;
+  context.save();
+  space.addEventListener("click", clickcheck, false);
+  context.font = "28pt Arial";
+  context.fillStyle = 'black';
+  context.fillText("Pick up to Five THREE powers", 130, 40);
+  context.beginPath();
+  context.moveTo(300, 26);
+  context.lineTo(380, 26);
+  context.lineWidth = 5;
+  context.strokeStyle = 'black';
+  context.stroke();
+  context.closePath();
+  outline(148, 118, 152, 35, 'black', 2);
+  selectboxes[0] = new hitbox(148, 118, 152, 35, 1);
+  outline(300, 118, 152, 35, 'black', 2);
+  selectboxes[1] = new hitbox(300, 118, 152, 35, 2);
+  outline(452, 118, 151, 35, 'black', 2);
+  selectboxes[2] = new hitbox(452, 118, 151, 35, 3);
+  context.font = "12px Arial";
+  context.fillStyle = 'green';
+  context.fillText("Click a slot to fill", 333, 110);
+  context.fillText("Then click a power", 327, 170);
+  var n = 0;
+  context.fillStyle = 'black';
+  for (i in pList) {
+    if (i % 5 == 0 && i != 0) {
+      n++;
+    }
+    powerslot[i] = new hitbox(0 + 150 * i - 750 * n, 180 + 32 * n, 150, 32, i);
+    context.drawImage(icons[i], 5 + 150 * i - 750 * n, 180 + 32 * n, 29, 32);
+    context.fillText(pList[i].power, 35 + 150 * i - 750 * n, 200 + 32 * n);
+  }
+}
+
+function hitbox(x0, y0, dx, dy, tie) {
+  this.x_org = x0;
+  this.y_org = y0;
+  this.xchange = dx;
+  this.ychange = dy;
+  this.value = tie;
+  this.check = function(x, y) {
+    if (x >= this.x_org && x <= this.x_org + this.xchange && y >= this.y_org &&
+      y <= this.y_org + this.ychange) {
+      return this.value;
+    } else {
+      return null;
+    }
+  }
+}
+
+function outline(x, y, dx, dy, color, width) {
+  context.restore();
+  context.beginPath();
+  context.rect(x, y, dx, dy);
+  context.lineWidth = width;
+  context.strokeStyle = color;
+  context.stroke();
+  context.closePath();
+}
+
+function clickcheck(click) {
+  context.shadowOffsetX = 0;
+  context.shadowOffsetY = 0;
+  context.shadowColor = 'white';
+  context.shadowBlur = 0;
+  x_pos = click.layerX - space.offsetLeft;
+  y_pos = click.layerY - space.offsetTop;
+  var pchoice = null;
+  if (slot != 0) {
+    for (i in powerslot) {
+      if (powerslot[i].check(x_pos, y_pos) != null) {
+        pchoice = powerslot[i].check(x_pos, y_pos);
+      }
+    }
+  } else {
+    for (i in selectboxes) {
+      if (selectboxes[i].check(x_pos, y_pos) != null) {
+        slot = selectboxes[i].check(x_pos, y_pos);
+      }
+    }
+    outline(selectboxes[slot - 1].x_org, selectboxes[slot - 1].y_org,
+      selectboxes[slot - 1].xchange, selectboxes[slot - 1].ychange, 'red',
+      2);
+  }
+  if (slot == 4) {
+    slot = 0;
+    pchoice = null;
+    results();
+  }
+  if (pchoice != null && slot != 0) {
+    select(pchoice);
+  }
+}
+
+function select(type) {
+  if (selected.length == 0) {
+    context.save();
+    context.beginPath();
+    context.rect(650, 113, 45, 45);
+    context.shadowOffsetX = 5;
+    context.shadowOffsetY = 5;
+    context.shadowColor = 'grey';
+    context.shadowBlur = 5;
+    selectboxes[3] = new hitbox(650, 113, 45, 45, 4);
+    context.fillStyle = "#00ff00";
+    context.fill();
+    context.lineWidth = 2;
+    context.strokeStyle = 'grey';
+    context.stroke();
+    context.font = "20px Arial";
+    context.fillStyle = 'black';
+    context.fillText("GO!", 653, 143);
+    context.restore();
+    context.font = "12px Arial";
+    context.fillStyle = 'red';
+    context.fillText(".  .  .   or click GO", 450, 110);
+    context.fillStyle = 'black';
+  }
+  outline(selectboxes[slot - 1].x_org, selectboxes[slot - 1].y_org,
+    selectboxes[slot - 1].xchange, selectboxes[slot - 1].ychange, 'black',
+    2);
+  context.clearRect(selectboxes[slot - 1].x_org + 2, selectboxes[slot - 1].y_org +
+    2, selectboxes[slot - 1].xchange - 4, selectboxes[slot - 1].ychange - 4
+  );
+  context.fillText(pList[type].power, selectboxes[slot - 1].x_org + 2,
+    selectboxes[slot - 1].y_org + 22);
+  context.drawImage(icons[type], selectboxes[slot - 1].x_org + 2 +
+    selectboxes[slot - 1].xchange - 33, selectboxes[slot - 1].y_org + 2, 29,
+    32);
+  selected[slot - 1] = type;
+  if (selected[slot - 1] == selected[slot % 3]) {
+    selected[slot % 3] = null;
+    context.clearRect(selectboxes[slot % 3].x_org + 2, selectboxes[slot % 3].y_org +
+      2, selectboxes[slot % 3].xchange - 4, selectboxes[slot % 3].ychange -
+      4);
+  }
+  if (selected[slot - 1] == selected[(slot + 1) % 3]) {
+    selected[(slot + 1) % 3] = null;
+    context.clearRect(selectboxes[(slot + 1) % 3].x_org + 2, selectboxes[(
+        slot + 1) % 3].y_org + 2, selectboxes[(slot + 1) % 3].xchange - 4,
+      selectboxes[(slot + 1) % 3].ychange - 4);
+  }
+  slot = 0;
+  pchoice = null;
+}
+
+function results() {
+  context.clearRect(0, 0, 750, 500);
+  space.removeEventListener("click", clickcheck, false);
+  space.addEventListener("click", reload, false);
+  var list = [];
+  for (i in selected) {
+    if (selected[i] != null) {
+      list.push(selected[i]);
+    }
+  }
+  for (var i in list) {
+    context.drawImage(icons[list[i]], 0, 30 + 150 * i, 80, 100);
+    for (var n in pList[list[i]].caveats) {
+      context.font = "12px Arial";
+      context.fillText("- " + pList[list[i]].caveats[n], 310, 60 + 150 * i +
+        28 * n, 410);
+    }
+    var word = pList[list[i]].description.split(' ');
+    var lines = [];
+    var linecount = 0;
+    lines[linecount] = "";
+    for (now in word) {
+      if (context.measureText(lines[linecount] + word[now] + " ")
+        .width < 215) {
+        lines[linecount] += word[now] + " ";
+      } else {
+        linecount += 1;
+        lines[linecount] = word[now] + " ";
+      }
+    }
+    for (var line in lines) {
+      context.fillText(lines[line], 85, 60 + 150 * i + 14 * line);
+    }
+    context.fillText("You", 0, 15 + 150 * i);
+    context.fillText("have", 0, 27 + 150 * i);
+    context.font = "25px Arial";
+    context.fillText(pList[list[i]].power, 30, 25 + 150 * i);
+    context.fillText("However...", 310, 25 + 150 * i);
+  }
+  context.beginPath();
+  context.moveTo(0, 150);
+  context.lineTo(750, 150);
+  context.moveTo(0, 300);
+  context.lineTo(750, 300);
+  context.moveTo(0, 460);
+  context.lineTo(750, 460);
+  context.strokeStyle = 'grey';
+  context.lineWidth = .5;
+  context.stroke();
+  context.closePath();
+  context.fillStyle = 'grey';
+  context.fillRect(.5, 460.5, 299, 49);
+  context.restore();
+  context.fillStyle = 'blue';
+  context.fillText("Try Again?", 85, 490);
+  redo = new hitbox(.5, 460.5, 299, 49, 1);
+  context.fillStyle = 'black';
+  context.fillText("Nemesis(es):", 305, 490);
+  context.font = "16px Arial";
+  var nemlast = "";
+  var nemlist = "";
+  for (var i in list) {
+    if (pList[list[i]].nemesis == nemlast) {
+      nemlist += ", and more " + pList[list[i]].nemesis;
+      nemlast = pList[list[i]].nemesis;
+    } else if (i == 0) {
+      nemlist += pList[list[i]].nemesis;
+      nemlast = pList[list[i]].nemesis;
+    } else {
+      nemlist += ", " + pList[list[i]].nemesis;
+      nemlast = pList[list[i]].nemesis;
+    }
+    context.fillText(nemlist, 460, 490);
+  }
+}
+
+function reload(click) {
+  x_pos = click.layerX - space.offsetLeft;
+  y_pos = click.layerY - space.offsetTop;
+  if (redo.check(x_pos, y_pos) == 1) {
+    space.removeEventListener("click", reload, false);
+    context.clearRect(0, 0, 750, 500);
+    selected = [];
+    selectboxes = [];
+    context.restore();
+    main();
+  }
+}
+
+</script> 
+
+</body>
+
+</html>
