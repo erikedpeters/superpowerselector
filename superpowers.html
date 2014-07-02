@@ -53,8 +53,8 @@ function main() {
   
   context.font = "28pt Arial";
   context.fillStyle = 'black';
-  context.fillText("Pick up to Five THREE powers", 130, 40);
   context.beginPath();
+  context.fillText("Pick up to Five THREE powers", 130, 40);
   context.moveTo(300, 26);
   context.lineTo(380, 26);
   context.lineWidth = 5;
@@ -70,10 +70,12 @@ function main() {
   outline(452, 118, 151, 35, 'black', 2);
   selectboxes[2] = new hitbox(452, 118, 151, 35, 3);
 
+  context.beginPath();
   context.font = "12px Arial";
   context.fillStyle = 'green';
   context.fillText("Click a slot to fill", 333, 110);
   context.fillText("Then click a power", 327, 170);
+  context.closePath();
   var n = 0;
   context.fillStyle = 'black';
 
@@ -83,8 +85,10 @@ function main() {
       n++;
     }
     powerslot[i] = new hitbox(0 + 150 * i - 750 * n, 180 + 32 * n, 150, 32, i);
+    context.beginPath();
     context.drawImage(icons[i], 5 + 150 * i - 750 * n, 180 + 32 * n, 29, 32);
     context.fillText(pList[i].power, 35 + 150 * i - 750 * n, 200 + 32 * n);
+    context.closePath();
   }
 }
 
@@ -185,6 +189,7 @@ function select(type) {
     context.fillStyle = 'red';
     context.fillText(".  .  .   or click GO", 450, 110);
     context.fillStyle = 'black';
+    context.closePath();
   }
   outline(selectboxes[slot - 1].x_org, selectboxes[slot - 1].y_org,
     selectboxes[slot - 1].xchange, selectboxes[slot - 1].ychange, 'black',
@@ -271,7 +276,6 @@ function results() {
   context.strokeStyle = 'grey';
   context.lineWidth = .5;
   context.stroke();
-  context.closePath();
   context.fillStyle = 'grey';
   context.fillRect(.5, 460.5, 299, 49);
   context.restore();
@@ -280,6 +284,7 @@ function results() {
   redo = new hitbox(.5, 460.5, 299, 49, 1);
   context.fillStyle = 'black';
   context.fillText("Nemesis(es):", 305, 490);
+  context.closePath();
   context.font = "16px Arial";
   var nemlast = "";
   var nemlist = "";
@@ -294,8 +299,10 @@ function results() {
       nemlist += ", " + pList[list[i]].nemesis;
       nemlast = pList[list[i]].nemesis;
     }
-    context.fillText(nemlist, 460, 490);
   }
+  context.beginPath();
+  context.fillText(nemlist, 460, 490);
+  context.closePath();
 }
 
 //checks to see if reload was clicked
