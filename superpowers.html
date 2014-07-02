@@ -124,11 +124,11 @@ function clickcheck(click) {
     for (i in selectboxes) {
       if (selectboxes[i].check(x_pos, y_pos) != null) {
         slot = selectboxes[i].check(x_pos, y_pos);
+        outline(selectboxes[slot - 1].x_org, selectboxes[slot - 1].y_org,
+          selectboxes[slot - 1].xchange, selectboxes[slot - 1].ychange, 'red',
+          2);
       }
     }
-    outline(selectboxes[slot - 1].x_org, selectboxes[slot - 1].y_org,
-      selectboxes[slot - 1].xchange, selectboxes[slot - 1].ychange, 'red',
-      2);
   }
   if (slot == 4) {
     slot = 0;
