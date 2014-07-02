@@ -47,7 +47,10 @@ function main() {
   context.shadowColor = 'grey';
   context.shadowBlur = 9;
   context.save();
+  
+  //click check for first screen of selector
   space.addEventListener("click", clickcheck, false);
+  
   context.font = "28pt Arial";
   context.fillStyle = 'black';
   context.fillText("Pick up to Five THREE powers", 130, 40);
@@ -58,18 +61,23 @@ function main() {
   context.strokeStyle = 'black';
   context.stroke();
   context.closePath();
+
+  //create 3 selection boxes visually with hotbox objects
   outline(148, 118, 152, 35, 'black', 2);
   selectboxes[0] = new hitbox(148, 118, 152, 35, 1);
   outline(300, 118, 152, 35, 'black', 2);
   selectboxes[1] = new hitbox(300, 118, 152, 35, 2);
   outline(452, 118, 151, 35, 'black', 2);
   selectboxes[2] = new hitbox(452, 118, 151, 35, 3);
+
   context.font = "12px Arial";
   context.fillStyle = 'green';
   context.fillText("Click a slot to fill", 333, 110);
   context.fillText("Then click a power", 327, 170);
   var n = 0;
   context.fillStyle = 'black';
+
+  //iterate through pList and draw power icons with names
   for (i in pList) {
     if (i % 5 == 0 && i != 0) {
       n++;
@@ -80,6 +88,8 @@ function main() {
   }
 }
 
+
+//creates object for defining and checking clicks
 function hitbox(x0, y0, dx, dy, tie) {
   this.x_org = x0;
   this.y_org = y0;
@@ -96,6 +106,7 @@ function hitbox(x0, y0, dx, dy, tie) {
   }
 }
 
+//quickdraw outline of a rectangle
 function outline(x, y, dx, dy, color, width) {
   context.restore();
   context.beginPath();
@@ -106,6 +117,7 @@ function outline(x, y, dx, dy, color, width) {
   context.closePath();
 }
 
+//find click on main screen and compare against various arrays of hotboxes depending on previous clicks
 function clickcheck(click) {
   context.shadowOffsetX = 0;
   context.shadowOffsetY = 0;
@@ -114,13 +126,18 @@ function clickcheck(click) {
   x_pos = click.layerX - space.offsetLeft;
   y_pos = click.layerY - space.offsetTop;
   var pchoice = null;
+
+  //if a select box has been selected
   if (slot != 0) {
     for (i in powerslot) {
       if (powerslot[i].check(x_pos, y_pos) != null) {
         pchoice = powerslot[i].check(x_pos, y_pos);
       }
     }
-  } else {
+  } 
+
+  //if a select box has not yet been selected
+  else {
     for (i in selectboxes) {
       if (selectboxes[i].check(x_pos, y_pos) != null) {
         slot = selectboxes[i].check(x_pos, y_pos);
@@ -130,16 +147,21 @@ function clickcheck(click) {
       }
     }
   }
+
+  //after select boxes are picked, if the go button was clicked...
   if (slot == 4) {
     slot = 0;
     pchoice = null;
     results();
   }
+
+  //when both a power and select box has been selected
   if (pchoice != null && slot != 0) {
     select(pchoice);
   }
 }
 
+//stores selected powers and checks against double-picks, initializes the go button on first iteration
 function select(type) {
   if (selected.length == 0) {
     context.save();
@@ -195,13 +217,19 @@ function select(type) {
 function results() {
   context.clearRect(0, 0, 750, 500);
   space.removeEventListener("click", clickcheck, false);
+
+  //initiate listener for second screen
   space.addEventListener("click", reload, false);
   var list = [];
+  
+  //push selected values into list for easier iteration
   for (i in selected) {
     if (selected[i] != null) {
       list.push(selected[i]);
     }
   }
+
+  //print results by iterating through list
   for (var i in list) {
     context.drawImage(icons[list[i]], 0, 30 + 150 * i, 80, 100);
     for (var n in pList[list[i]].caveats) {
@@ -209,6 +237,8 @@ function results() {
       context.fillText("- " + pList[list[i]].caveats[n], 310, 60 + 150 * i +
         28 * n, 410);
     }
+
+    //split description to allow for word wrap within the column it occupies
     var word = pList[list[i]].description.split(' ');
     var lines = [];
     var linecount = 0;
@@ -268,6 +298,7 @@ function results() {
   }
 }
 
+//checks to see if reload was clicked
 function reload(click) {
   x_pos = click.layerX - space.offsetLeft;
   y_pos = click.layerY - space.offsetTop;
