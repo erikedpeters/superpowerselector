@@ -4,13 +4,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Super Powahs</title>
-
-<style type="text/css">
-	h4 {font-family: sans-serif;}
-	p {font-family: sans-serif;}
-	a {font-family: sans-serif; color:#d15423; text-decoration:none;}
-</style>
-
 </head>
 
 <body>
@@ -42,11 +35,6 @@ if (!z) {
 }
 
 function main() {
-  context.shadowOffsetX = 5;
-  context.shadowOffsetY = 5;
-  context.shadowColor = 'grey';
-  context.shadowBlur = 9;
-  context.save();
   
   //click check for first screen of selector
   space.addEventListener("click", clickcheck, false);
@@ -62,7 +50,7 @@ function main() {
   context.stroke();
   context.closePath();
 
-  //create 3 selection boxes visually with hotbox objects
+  //create 3 selection boxes visually with hitbox objects
   outline(148, 118, 152, 35, 'black', 2);
   selectboxes[0] = new hitbox(148, 118, 152, 35, 1);
   outline(300, 118, 152, 35, 'black', 2);
@@ -87,7 +75,7 @@ function main() {
     powerslot[i] = new hitbox(0 + 150 * i - 750 * n, 180 + 32 * n, 150, 32, i);
     context.beginPath();
     context.drawImage(icons[i], 5 + 150 * i - 750 * n, 180 + 32 * n, 29, 32);
-    context.fillText(pList[i].power, 35 + 150 * i - 750 * n, 200 + 32 * n);
+    context.fillText(pList[i].power, 37 + 150 * i - 750 * n, 200 + 32 * n);
     context.closePath();
   }
 }
@@ -123,10 +111,6 @@ function outline(x, y, dx, dy, color, width) {
 
 //find click on main screen and compare against various arrays of hotboxes depending on previous clicks
 function clickcheck(click) {
-  context.shadowOffsetX = 0;
-  context.shadowOffsetY = 0;
-  context.shadowColor = 'white';
-  context.shadowBlur = 0;
   x_pos = click.layerX - space.offsetLeft;
   y_pos = click.layerY - space.offsetTop;
   var pchoice = null;
